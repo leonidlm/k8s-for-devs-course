@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world
+  labels:
+    name: hello-world
+    provider: tutum
+    module: "1"
+spec:
+  containers:
+    - name: tutum-hello-world
+      image: tutum/hello-world
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world
+  labels:
+    name: hello-world
+    module: "1"
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+  selector:
+    name: hello-world
+    module: "1"
+
