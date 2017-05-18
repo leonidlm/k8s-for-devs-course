@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: wp
+  labels:
+    app: wp
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: wp
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress
+        env:
+        - name: WORDPRESS_DB_PASSWORD
+          value: root
+        - name: WORDPRESS_DB_HOST
+          value: mysql.default.svc
+        ports:
+        - containerPort: 80
+

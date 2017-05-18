@@ -4,17 +4,20 @@
 2. Install Kubectl
 3. Install Minikube
 
-# Useful commands
+# Useful commands & links
 
 ```
 minikube start
 minikube status
-kubectl create -f <file.yaml>
+minikube delete
+
+kubectl create -f <YAML_FILE>
+kubectl get nodes
 kubectl get pods
 kubectl get services
-kubectl describe service <service-name>
-kubectl describe pod <pod-name>
-kubectl logs <pod-name>
+kubectl describe service <NAME>
+kubectl describe pod <NAME>
+kubectl logs <POD_NAME>
 ```
 
 # Instructions
@@ -25,11 +28,13 @@ kubectl logs <pod-name>
 3. Upload the configuration defined in `hello-world.yml` file (`kubectl create -f <file-name>`)
 4. Wait until the application's pod will be in the **running** state by querying it's status with
 `kubectl get pods` command
+    1. If it's not running yet, can you check why? Use the describe command
+    mentioned below and look at the **Events** field.
 5. View the application's pod definition by using the `kubectl describe pod
-<pod-name>` command
-    1. Can you discover pod's internal ip address?
-    2. How about it's node. Can you find on which node it's running?
+<POD_NAME>` command
+    1. Can you discover pod's internal IP address?
+    2. How about it's node. Can you find the IP of the node that is running this pod?
 7. Use `minikube service hello-world` to open the application in the browser
-8. Now let's stop the application by running `kubectl delete pod <pod-name>`
-9. Can you access it's UI now? Are ther any listed endpoints for the applications service? (`kubectl describe service hello-world`)
+8. Now let's stop the application by running `kubectl delete pod <NAME>`
+9. Can you access it's UI now? Are there any listed endpoints for the applications service? (`kubectl describe service hello-world`)
 

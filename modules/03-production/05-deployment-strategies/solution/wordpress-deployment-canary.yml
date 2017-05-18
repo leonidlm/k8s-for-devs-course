@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: wp-canary
+  labels:
+    app: wp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wp
+      tier: canary
+  template:
+    metadata:
+      labels:
+        app: wp
+        tier: canary
+        version: 0.1.1
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress
+        env:
+        - name: WORDPRESS_DB_PASSWORD
+          value: root
+        - name: WORDPRESS_DB_HOST
+          value: mysql.default.svc
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 1
+          timeoutSeconds: 2
+

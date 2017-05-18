@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: wp
+  labels:
+    app: wp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wp
+      tier: stable
+  template:
+    metadata:
+      labels:
+        app: wp
+        tier: stable
+        version: 0.1.0
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress
+        env:
+        - name: WORDPRESS_DB_PASSWORD
+          value: root
+        - name: WORDPRESS_DB_HOST
+          value: mysql.default.svc
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 1
+          timeoutSeconds: 2
+

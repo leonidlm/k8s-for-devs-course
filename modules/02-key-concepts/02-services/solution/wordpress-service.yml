@@ -1,0 +1,17 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wp-http
+spec:
+  type: NodePort
+  selector:
+    app: wp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+# Advanced solution:
+# kubectl expose pod wp --name wp-http --port 80 --target-port 80 --type LoadBalancer
+

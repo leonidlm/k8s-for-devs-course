@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: drinks
+  annotations:
+#    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: pepsi.cooldrinks.com
+    http:
+      paths:
+      - backend:
+          serviceName: pepsi-nginx
+          servicePort: 80
+  - host: cola.cooldrinks.com
+    http:
+      paths:
+      - backend:
+          serviceName: cola-nginx
+          servicePort: 80
+

@@ -1,0 +1,17 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mysql-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1G
+  # We could be more precise and require a specific storage class, but it's not necessary.
+  #storageClassName: standard
+
+# Advanced solutions:
+# To make the persistent volume stay after the claim will be deleted we need to change it's reclaimPolicy from Delete to Retain.
+# At the moment, it's possible to do so using the `kubectl edit pv <NAME>` command.

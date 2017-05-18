@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wp-http
+  namespace: frontend
+spec:
+  type: NodePort
+  selector:
+    app: wp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+

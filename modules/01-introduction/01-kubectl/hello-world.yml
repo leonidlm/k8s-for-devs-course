@@ -4,9 +4,7 @@ kind: Pod
 metadata:
   name: hello-world
   labels:
-    name: hello-world
-    provider: tutum
-    module: "1"
+    app: hello-world
 spec:
   containers:
     - name: tutum-hello-world
@@ -19,13 +17,11 @@ kind: Service
 metadata:
   name: hello-world
   labels:
-    name: hello-world
-    module: "1"
+    app: hello-world
 spec:
   type: NodePort
   ports:
     - port: 80
   selector:
-    name: hello-world
-    module: "1"
+    app: hello-world
 

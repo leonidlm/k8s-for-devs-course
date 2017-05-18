@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.5
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: mysql-default
+          containerPort: 3306
+        readinessProbe:
+          tcpSocket:
+            port: mysql-default
+          periodSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: mysql-default
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          failureThreshold: 3
+
