@@ -72,6 +72,7 @@ Create a Kubernetes YAML definition of a pod that will run:
 4. Connect the `wordpress` container to it's local `mysql` by specifying the
 following environment variables in the pod's YAML definition:
 `WORDPRESS_DB_PASSWORD` (should be `root`) and `WORDPRESS_DB_HOST`.
+5. For the `mysql` container, specify the following environment variable: `MYSQL_ROOT_PASSWORD` (should be `root`).
 
 Now, after you made sure that everything is running properly, try killing one of
 the containers in a pod (use `minikube shh` and `docker stop`).
