@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    app: nginx
-  name: nginx
+    app: pepsi-nginx
+  name: pepsi-nginx
 spec:
   containers:
   - image: nginx:1.11.5
-    name: nginx
+    name: pepsi
     ports:
     - containerPort: 80
       protocol: TCP
@@ -17,5 +17,5 @@ spec:
   volumes:
     - name: config-volume
       configMap:
-        name: nginx
+        name: pepsi-nginx
 

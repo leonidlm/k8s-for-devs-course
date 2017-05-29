@@ -15,6 +15,14 @@ kubectl create configmap <NAME> --from-file=<FILENAME>
 
 echo "<DECODED_SECRET_DATA>" | base64 -d
 
+# Mapping a secret to Environment variable:
+env:
+  - name: ENV_VAR_NAME
+    valueFrom:
+      secretKeyRef:
+        name: secret-name
+        key: secret-key
+
 ```
 
 # Instructions
@@ -27,7 +35,7 @@ For this exercise, we'll take the busybox pod we have created previously, and
 make it present a welcome message we'll define in a separate ConfigMap.
 
 Start by creating a new ConfigMap. You can name it anyway you like.
-Add a simple text message to the content of the one of the keys. You can use the
+Add a simple text message to the content of one of the keys. You can use the
 YAML file format or the `kubectl create configmap <NAME> --from-file=...` command.
 
 Now, adjust the pod YAML file from lesson 01-pods to inject the content of the

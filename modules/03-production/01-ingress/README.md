@@ -3,6 +3,11 @@
 Examples of ingress resource specification:
 https://kubernetes.io/docs/concepts/services-networking/ingress/#simple-fanout
 
+```
+kubectl get ingress
+kubectl describe ingress <INGRESS_NAME>
+```
+
 # Instructions
 
 We are going to create a simple drinks api.
@@ -18,22 +23,25 @@ provided by the **pepsi** micro-service.
 ## Step 1: Create the backend services
 
 Create two nginx based micro-services, one called *pepsi* the second *cola*. A
-micro-service should consist of a deployment and a service (NodePort).
+micro-service should consist of a deployment and a service.
 
-I've placed an example nginx pod and an nginx configuration in the `examples` directory.
+I've placed both pepsi/cola nginx configuration and pod files in the `examples` directory.
 
 To create a pepsi mico-service for example, you'll need to:
 
-1. Create a configmap from the example nginx's configuration
-2. Create a deployment based on the nginx pod example
-3. Make sure to mount the nginx confgimap to `/etc/nginx/conf.d/<NAME>` inside the pod.
+1. Upload pepsi's nginx config file to Kubernetes as a ConfigMap object
+(`kubectl create configmap pepsi-nginx --from-file=default.conf=pepsi-nginx.conf`).
+2. Deploy the pod as-is or create a deployment file based on the pepsi-pod
+example. Make sure to mount the nginx confgimap to `/etc/nginx/conf.d/<NAME>` inside the pod.
+3. Create a service to route traffic to the pepsi pod's port. Do we must to use
+a NodePort service or it's not required?
 
-## Step 2: Creat the ingress resource
+## Step 2: Create the ingress resource
 
 Now, after you created the two micro-services and verified that they work by
-hitting their service IPs, it's time to work on the ingress definitions.
+browsing to their service IPs, it's time to work on the ingress definitions.
 
-Create an ingress resource the will route the url requests to the relevant services.
+Create an ingress resource that will route the url requests to the relevant services.
 A request to `http://<INGRESS_IP>/pepsi` should be proxied to the pepsi service you just wrote.
 And a request to `http://<INGRESS_IP>/cola` should be proxied to the cola service.
 

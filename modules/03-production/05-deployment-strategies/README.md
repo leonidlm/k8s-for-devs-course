@@ -12,10 +12,31 @@ https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-ex
 
 # Instructions
 
-## Deployment Strategy
+## Rolling Update in bulks
+
+By default, a rolling update deployment will release a new version of your apps
+one-by-one.
+
+If we have lots of pods running, updating each pod one-by-one can take a while.
+Fortunately, we can adjust our deployment strategy parameters to speed up the
+release process.
+
+Increase the amount of replicas in the wordpress deployment file to 6.
+
+Override the default deployment settings to make sure that you can deploy a new
+version of our wordpress pods two containers at a time.
+
+When done, try re-deploying the wordpress deployment file, do you see the
+required amount of pod getting terminated in one batch?
+
+**TIP** If for testing purposes you want to redeploy the same deployment file
+ multiple times, add an annotation to `metadata.annotations` and change it's
+ value with something random before each new deployment attempt.
+
+## Canary Release
 
 To make sure that our wordpress deployments will be safe to the end user, we
-will implement a canary deployment stategy to release new versions to
+will implement a canary deployment strategy to release new versions to
 production.
 
 Copy the wordpress deployment file from the previous exercise and adjust them to
@@ -39,7 +60,7 @@ canary release.
 ## **Advanced**: Downward API & Hooks
 
 Implement a simple busybox container that will monitoring and print an output of
-an arbitraty logfile to it's standard output.
+an arbitrary logfile to it's standard output.
 
 Use the lifecycle hooks to print the pod's IP at container's start and pod's
 Namespace before it's stopped.
