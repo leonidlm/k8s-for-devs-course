@@ -1,0 +1,29 @@
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: cpu-agent
+  labels:
+    app: cpu-agent
+spec:
+  template:
+    metadata:
+      labels:
+        app: cpu-agent
+    spec:
+      containers:
+      - name: cpu-agent
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true; do cat /host/proc/loadavg ; sleep 5; done
+        volumeMounts:
+          - name: proc-loadavg
+            mountPath: /host/proc/loadavg
+            readOnly: true
+      volumes:
+        - name: proc-loadavg
+          hostPath:
+            path: /proc/loadavg
+

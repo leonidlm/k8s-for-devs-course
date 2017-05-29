@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: q
+spec:
+  serviceName: "queue"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: queue
+    spec:
+      containers:
+      - name: queue
+        image: busybox
+        args:
+          - /bin/sh
+          - -c
+          - nc -l 0.0.0.0 -p 80
+        ports:
+          - containerPort: 80
+
