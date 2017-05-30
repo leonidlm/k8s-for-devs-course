@@ -43,7 +43,7 @@ Copy the wordpress deployment file from the previous exercise and adjust them to
 implement a canary deployment.
 
 **TIP** you'll probably have two separate deployment files. One for the stable
-version, and one for the canary release.  Make sure that you use the appropriate
+version, and one for the canary release. Make sure that you use the appropriate
 matchLabels and that you tag each pod with it's release version.
 
 Now, test your new release process manually, in real-world scenarios this will
@@ -56,6 +56,10 @@ Just to verify that you configured the canary release correctly, scale the v1
 release pods to 0 (`kubectl scale deployment ...`) and try browsing the
 wordpress UI.  If it's working it means the traffic is successfully reaching the
 canary release.
+
+What will happen if we won't set custom matchLabels directive and use the
+default values specified by the deployment object? Will it affect how we'll be
+able to promote the canary version to the main deployment resource?
 
 ## **Advanced**: Downward API & Hooks
 
