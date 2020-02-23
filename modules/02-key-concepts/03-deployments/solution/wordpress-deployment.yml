@@ -19,7 +19,7 @@ spec:
         - name: WORDPRESS_DB_PASSWORD
           value: root
         - name: WORDPRESS_DB_HOST
-          value: mysql.default.svc
+          value: mysql
         ports:
         - containerPort: 80
 
