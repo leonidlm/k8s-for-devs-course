@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: busybox
@@ -7,6 +7,9 @@ metadata:
     app: busybox
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: busybox
   template:
     metadata:
       labels:

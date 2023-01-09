@@ -19,8 +19,14 @@ spec:
       - name: mysql
         image: mysql:5.5
         env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: root
+          - name: MYSQL_USER
+            value: admin
+          - name: MYSQL_PASSWORD
+            value: admin
+          - name: MYSQL_ROOT_PASSWORD
+            value: admin
+          - name: MYSQL_DATABASE
+            value: wordpress
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3306

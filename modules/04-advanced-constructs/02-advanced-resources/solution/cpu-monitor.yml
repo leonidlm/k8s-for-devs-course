@@ -1,11 +1,14 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: cpu-agent
   labels:
     app: cpu-agent
 spec:
+  selector:
+    matchLabels:
+      app: cpu-agent
   template:
     metadata:
       labels:
