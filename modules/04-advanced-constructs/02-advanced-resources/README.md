@@ -4,7 +4,7 @@ Examples of CronJob resources:
 https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
 
 A good DaemonSet resource example:
-https://github.com/kubernetes/kubernetes/blob/master/examples/newrelic/newrelic-daemonset.yaml
+https://github.com/kubernetes/examples/blob/master/staging/newrelic/newrelic-daemonset.yaml
 
 StatefulSet resource examples and documentations:
 https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/
@@ -24,7 +24,7 @@ image: busybox
 args:
   - /bin/bash
   - -c
-  - wget http://www.ynet.co.il -O/dev/null
+  - wget https://www.ynet.co.il -O/dev/null
 ```
 
 We also want to make sure that we won't re-try an unsuccessful attempt, we can
@@ -47,7 +47,7 @@ To expose the cpu metrics of the node to the container that runs in a pod, we
 will need to mount the host's `/proc/loadavg` file inside the container.
 
 Assuming that we mounted host's `/proc/loadavg` inside a container at
-`/host/proc/loadavg`, we can continuously print the load avarage by running the
+`/host/proc/loadavg`, we can continuously print the load average by running the
 busybox container with the following arguments:
 ```
 args:

@@ -22,7 +22,7 @@ traffic outside our minikube cluster. Let's do it now!
 
 1. Create a YAML service definition to route traffic to the wordpress container from the previous exercise.
 2. Check that the new service has any active endpoints using the `kubectl describe svc ...` command.
-2. Make sure that you can connect to the wordpress UI with a browser, use
+3. Make sure that you can connect to the wordpress UI with a browser, use
 `minikube service ...` command to connect via the newly created service.
 
 Services are Layer 4 constructs which means you aren't restricted to HTTP only,

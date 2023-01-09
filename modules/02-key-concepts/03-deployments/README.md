@@ -33,7 +33,7 @@ What is the current revision of our deployment object? (`kubectl rollout history
 
 In real-world examples we won't run wordpress and mysql containers in one pod.
 
-Usually, you will have separate deploymet object for each one of these applications.
+Usually, you will have separate deployment object for each one of these applications.
 
 Let's split the pod definition from a few exercises before into separate deployment files.
 

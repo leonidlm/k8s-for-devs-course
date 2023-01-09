@@ -1,4 +1,4 @@
-apiVersion: batch/v2alpha1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: ynet-uptime
@@ -17,6 +17,6 @@ spec:
             args:
             - /bin/sh
             - -c
-            - wget http://www.ynet.co.il -O/dev/null
+            - wget https://www.ynet.co.il -O/dev/null
           restartPolicy: Never
 

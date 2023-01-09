@@ -25,12 +25,12 @@ kubectl logs <POD_NAME>
 1. Start a new Kubernetes cluster using `minikube`
 2. Make sure that your cluster is running
 3. Check that your `kubectl` is connected to the new cluster. You can verify it by checking the node names in the cluster (`kubectl get nodes`)
-3. Upload the configuration defined in `hello-world.yml` file (`kubectl create -f <file-name>`)
-4. Wait until the application's pod will be in the **running** state by querying it's status with
+4. Upload the configuration defined in `hello-world.yml` file (`kubectl create -f <file-name>`)
+5. Wait until the application's pod will be in the **running** state by querying it's status with
 `kubectl get pods` command
     1. If it's not running yet, can you check why? Use the describe command
     mentioned below and look at the **Events** field.
-5. View the application's pod definition by using the `kubectl describe pod
+6. View the application's pod definition by using the `kubectl describe pod
 <POD_NAME>` command
     1. Can you discover pod's internal IP address?
     2. How about it's node. Can you find the IP of the node that is running this pod?

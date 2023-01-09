@@ -64,7 +64,7 @@ deployment file instead.
 2. Modify the wordpress deployment to get the mysql password from a secret. The
 simplest way of doing so is by mapping a secret to an environment variable.
 Remember that you should also deploy the mysql deployment and service object for
-the wordpress pods to succesfully connect to their database.
+the wordpress pods to successfully connect to their database.
 3. Try changing the secret's value by redeploying it's configuration. Check if
 the value of the environment variable in the pod also changed (use `kubectl exec
 <POD> env` command).
